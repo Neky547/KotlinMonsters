@@ -3,6 +3,7 @@ package org.example
 import org.example.dresseur.Entraineur
 import org.example.monde.Zone
 import org.example.monstre.EspeceMonstre
+import org.example.monstre.IndividuMonstre
 
 /**
  * Change la couleur du message donné selon le nom de la couleur spécifié.
@@ -29,8 +30,6 @@ fun changeCouleur(message: String, couleur:String=""): String {
     return "$codeCouleur$message$reset"
 }
 
-
-
 var joueur = Entraineur(1, "Sacha", 100)
 var rival = Entraineur(2, "Regis", 200)
 
@@ -43,21 +42,44 @@ var Bugsyface = EspeceMonstre(10, "Bugsyface", "Insecte", 10, 13, 8, 7, 13, 45, 
 var Galum = EspeceMonstre(13, "Flamkip", "Minéral", 12, 15, 6, 8, 12, 55, 9.0, 13.0, 4.0, 6.5, 10.5, 13.0, "Golem ancien de pierre, yeux lumineux en garde.", "Peut rester immobile des heures comme une statue.", "Sérieux, stoïque, fiable")
 
 //ZONES
-var route1 = Zone(1, "Départ", 1500, mutableListOf(Galum, Laoumi, Flamkip), null, null)
-var route2 = Zone(2, "Fôret", 3000, mutableListOf(Bugsyface, Springleaf, Flamkip), null, null)
+var route1 = Zone(1, "Départ", 1500, mutableListOf(Springleaf, Flamkip, Aquamy), null, null)
+var route2 = Zone(2, "Fôret", 3000, mutableListOf( Laoumi, Bugsyface, Galum), null, null)
+
+//individuMonstre
+val monstre1 = IndividuMonstre(1, "springleaf", Springleaf, null, 1500.0)
+val monstre2 = IndividuMonstre(2, "flamkip", Flamkip, null, 1500.0)
+val monstre3 = IndividuMonstre(3, "aquamy", Aquamy, null, 1500.0)
+
+
 
 
 fun main() {
-        route1.zoneSuivante = route2
-        route2.zonePrecedante = route1
-    /*
-        joueur.afficheDetail()
-        rival.afficheDetail()
-        joueur.argents+=50
-        joueur.afficheDetail()
+    route1.zoneSuivante = route2
+    route2.zonePrecedante = route1
 
-     */
-        println(Springleaf.afficheArt())
-        println(Flamkip.afficheArt())
-        println(Aquamy.afficheArt())
+    /*
+    joueur.afficheDetail()
+    rival.afficheDetail()
+    joueur.argents+=50
+    joueur.afficheDetail()
+*/
+
+
+    println(Springleaf.afficheArt())
+    println(monstre1.afficheDetail())
+
+    println(Flamkip.afficheArt())
+    println(monstre2.afficheDetail())
+
+    println(Aquamy.afficheArt())
+    println(Laoumi.afficheArt())
+    println(Bugsyface.afficheArt())
+    println(Galum.afficheArt())
+/*
+    monstre1.exp = 3000.0
+    monstre2.pv += 3500
+*/
+    //Attaquer un monstre
+    println(monstre1.attaquer(monstre3))
+
 }

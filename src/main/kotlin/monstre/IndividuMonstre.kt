@@ -43,6 +43,7 @@ class IndividuMonstre(
         return palier
     }
     fun levelUp(){
+        niveau+=1
         attaque = (round(attaque*potentiel)).toInt()+ (Random.nextInt(-2,3))
         defense = (round(defense*potentiel)).toInt()+ (Random.nextInt(-2,3))
         vitesse = (round(vitesse*potentiel)).toInt()+ (Random.nextInt(-2,3))
@@ -60,21 +61,66 @@ class IndividuMonstre(
         get() = field
         set(value) {
             field = value
-            var estNiveau1 = (niveau == 1)
-            if(niveau!=1) estNiveau1=false
-            while(palierExp(niveau)<=field){
 
+            // Vérification du niveau 1
+            var estNiveau1 = (niveau == 1)
+
+            // Tant que l’XP atteint le palier du niveau
+            while (field >= palierExp(niveau)) {
                 levelUp()
 
-                if(!estNiveau1){
-                    println("Le monstre $nom est maintenant niveau $niveau!")
+                // Affichage uniquement si ce n’est pas le niveau 1
+                if (!estNiveau1) {
+                    println("Le monstre $nom est maintenant niveau $niveau !")
                 }
             }
         }
 
+
+
     init {
         this.exp = expInit // applique le setter et déclenche un éventuel level-up
+    }
+
+    //Méthode attaquer
+    /**
+     * Attaque un autre [IndividuMonstre] et inflige des dégâts.
+     *
+     * Les dégâts sont calculés de manière très simple pour le moment :
+     * `dégâts = attaque - (défense / 2)` (minimum 1 dégât).
+     *
+     * @param cible Monstre cible de l'attaque.
+     */
+    fun attaquer(cible: IndividuMonstre){
+        var degatBrut = this.attaque
+        var degatTotal = degatBrut - (this.defense/2)
+        if(degatTotal<1) degatTotal = 1
+        var pvAvant = cible.pv
+        cible.pv -= degatTotal
+        var pvApres = cible.pv
+        println("$nom inflige ${pvAvant - pvApres} dégâts à ${cible.nom} ")
 
     }
 
+    /**
+     * Demande au joueur de renommer le monstre.
+     * Si l'utilisateur entre un texte vide, le nom n'est pas modifié.
+     */
+
+    fun renommer(){
+        println("Renommer ${this.nom}? : ")
+        var nouveauNom = readln()
+        if(nouveauNom.isNotEmpty()) this.nom = nouveauNom
+
+    }
+
+    fun afficheDetail(){
+        val details = "====================\n"+
+        "Nom: ${this.nom}     Niveau: ${this.niveau}\n Exp: ${this.niveau}\n Pv: ${this.pv}\n"+
+        "====================\n"+
+        "Atq: ${this.attaque}     Def: ${this.defense}     Vitesse: ${this.vitesse}\n AtqSpe: ${this.attaqueSpe}     DefSpe: ${this.defenseSpe}\n"+
+       "====================\n"
+
+        println(details)
+    }
 }
