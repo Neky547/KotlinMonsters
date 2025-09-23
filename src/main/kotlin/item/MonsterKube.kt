@@ -14,6 +14,7 @@ class MonsterKube(
         println("Vous lancez le Monstre Kube!")
         if(cible.entraineur != null){
             println("Le monstre ne peut pas être capturé.")
+            return false
         } else {
             var nbAleatoire = (0 until 100).random()
             if(chanceCapture <= nbAleatoire){
@@ -29,9 +30,10 @@ class MonsterKube(
                     joueur.equipeMonstre.add(cible)
                 }
                 cible.entraineur = joueur
+                return true
             }
         }
-        return true
+
     }
 
 }

@@ -2,6 +2,7 @@ package org.example
 
 import org.example.dresseur.Entraineur
 import org.example.item.Badge
+import org.example.item.MonsterKube
 import org.example.monde.Zone
 import org.example.monstre.EspeceMonstre
 import org.example.monstre.IndividuMonstre
@@ -53,6 +54,9 @@ val monstre3 = IndividuMonstre(3, "aquamy", Aquamy, null, 1500.0)
 
 //Badge:Item
 //val badgePierre = Badge(1, "Badge Roche", "Badge gagné lorsque le joueur atteint la arène de pierre.")
+
+//Objet MonsterKube
+val monsterKube1 = MonsterKube(1, "springleaf", "Je ne saurais pas comment décrire cet objet", 0.5)
 
 fun main() {
     route1.zoneSuivante = route2
