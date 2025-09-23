@@ -44,12 +44,12 @@ class IndividuMonstre(
     }
     fun levelUp(){
         niveau+=1
-        attaque = (round(attaque*potentiel)).toInt()+ (Random.nextInt(-2,3))
-        defense = (round(defense*potentiel)).toInt()+ (Random.nextInt(-2,3))
-        vitesse = (round(vitesse*potentiel)).toInt()+ (Random.nextInt(-2,3))
-        attaqueSpe = (round(attaqueSpe*potentiel)).toInt()+ (Random.nextInt(-2,3))
-        defenseSpe = (round(defenseSpe*potentiel)).toInt()+ (Random.nextInt(-2,3))
-        pvMax = (round(pvMax*potentiel)).toInt()+ (Random.nextInt(-5,6))
+        attaque += (round(this.espece.modAttaque*potentiel)).toInt()+ (Random.nextInt(-2,3))
+        defense += (round(this.espece.modDefense*potentiel)).toInt()+ (Random.nextInt(-2,3))
+        vitesse += (round(this.espece.modVitesse*potentiel)).toInt()+ (Random.nextInt(-2,3))
+        attaqueSpe += (round(this.espece.modAttaqueSpe*potentiel)).toInt()+ (Random.nextInt(-2,3))
+        defenseSpe += (round(this.espece.modDefenseSpe*potentiel)).toInt()+ (Random.nextInt(-2,3))
+        pvMax += (round(this.espece.modPv*potentiel)).toInt()+ (Random.nextInt(-5,6))
     }
 
 

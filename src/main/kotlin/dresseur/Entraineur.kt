@@ -1,5 +1,7 @@
 package org.example.dresseur
 
+import org.example.monstre.IndividuMonstre
+
 /**
  * Représente un entraîneur dans le contexte du jeu.
  *

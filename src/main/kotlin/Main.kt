@@ -1,6 +1,7 @@
 package org.example
 
 import org.example.dresseur.Entraineur
+import org.example.item.Badge
 import org.example.monde.Zone
 import org.example.monstre.EspeceMonstre
 import org.example.monstre.IndividuMonstre
@@ -50,8 +51,8 @@ val monstre1 = IndividuMonstre(1, "springleaf", Springleaf, null, 1500.0)
 val monstre2 = IndividuMonstre(2, "flamkip", Flamkip, null, 1500.0)
 val monstre3 = IndividuMonstre(3, "aquamy", Aquamy, null, 1500.0)
 
-
-
+//Badge:Item
+//val badgePierre = Badge(1, "Badge Roche", "Badge gagné lorsque le joueur atteint la arène de pierre.")
 
 fun main() {
     route1.zoneSuivante = route2
@@ -81,5 +82,9 @@ fun main() {
 */
     //Attaquer un monstre
     println(monstre1.attaquer(monstre3))
+
+    //Exemple objet badge
+    //println(badgePierre)
+
 
 }
