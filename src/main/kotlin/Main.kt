@@ -90,5 +90,8 @@ fun main() {
     //Exemple objet badge
     //println(badgePierre)
 
+    //Utiliser kube
+    monsterKube1.utiliser(monstre3)
+
 
 }
