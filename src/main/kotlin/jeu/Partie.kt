@@ -27,10 +27,12 @@ class Partie (
         println("Choisissez votre monstre :\n 1.Springleaf\n 2.Flamkip\n 3.Aquamy")
         var choixSelection = readln().toInt()
 
+        //Vérifie si le numéro de choix est bien valide
         if(choixSelection !in 1..3) choixStarter()
+
         if(choixSelection == 1) {starter = monstre1}
         else if(choixSelection == 2) {starter = monstre2}
-        else { var starter = monstre3}
+        else {starter = monstre3}
 
         //Permettre à l'utilisateur de renommer le starter
         starter!!.renommer()
@@ -41,4 +43,30 @@ class Partie (
 
     }
 
+    //Permettre d'échanger les positions de deux monstres dans l'equipe
+    fun modifierOrdreEquipe(){
+        println("Entrez la position du monstre que vous voulez déplacer : ")
+        var position1 = readln().toInt()
+
+        println("Entrez la nouvelle position du monstre : ")
+        var position2 = readln().toInt()
+
+        var firstPokemon = joueur!!.equipeMonstre[position1]
+        var secondPokemon = joueur!!.equipeMonstre[position2]
+
+        joueur!!.equipeMonstre[position1] = secondPokemon
+        joueur!!.equipeMonstre[position2] = firstPokemon
+
+        println(joueur!!.equipeMonstre)
+    }
+
+    /**
+     * Affiche les détails des monstres
+     * Demande si l'utilisateur veut modifier l'ordre*/
+    fun examinerEquipe(){
+        for(monstre in joueur!!.equipeMonstre){
+            monstre.afficheDetail()
+            modifierOrdreEquipe()
+        }
+    }
 }
