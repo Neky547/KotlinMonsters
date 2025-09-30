@@ -65,8 +65,19 @@ class Partie (
      * Demande si l'utilisateur veut modifier l'ordre*/
     fun examinerEquipe(){
         for(monstre in joueur!!.equipeMonstre){
-            monstre.afficheDetail()
-            modifierOrdreEquipe()
+            println("Pokemon : $monstre\n" +
+                    "Numéro : ${joueur!!.equipeMonstre.indexOf(monstre)}")
         }
+        println("Si vous voulez retourner au menu principal : tapez q" +
+                "Si vous voulez modifier l'ordre des monstres : tapez m"+
+                "Tapez le numéro du monstre pour voir les détails :")
+        var entree = readln()
+        if(entree.lowercase() == "q") {return}
+        else if(entree.lowercase() == "m") {modifierOrdreEquipe()}
+        else if(0 < entree.toInt() < joueur!!.equipeMonstre.size)
+        var monstre = joueur!!.equipeMonstre[entree.toInt()]
+        monstre.espece.afficheArt()
+        monstre.afficheDetail()
+
     }
 }
