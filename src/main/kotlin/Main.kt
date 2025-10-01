@@ -58,6 +58,16 @@ val monstre3 = IndividuMonstre(3, "aquamy", Aquamy, null, 1500.0)
 //Objet MonsterKube
 val monsterKube1 = MonsterKube(1, "springleaf", "Je ne saurais pas comment décrire cet objet", 0.5)
 
+/**
+ * Fonction nouvelle partie
+ * Affiche un message d’introduction.
+ * Demande et modifie le nom du joueur.
+ * Créer et retourne un nouvelle objet partie
+ * */
+fun nouvellePartie(){
+
+}
+
 fun main() {
     route1.zoneSuivante = route2
     route2.zonePrecedante = route1

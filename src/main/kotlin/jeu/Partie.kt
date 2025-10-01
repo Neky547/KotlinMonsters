@@ -80,4 +80,81 @@ class Partie (
         monstre.afficheDetail()
 
     }
+
+/**
+ * Méthode Jouer qui permet d'indiquer au joueur la zone où il se trouve
+ * Lui indique les actions qu'il peut exécuter en fonction de la zone*/
+
+    fun jouer() {
+        var continuer = true
+
+        while (continuer) {
+            // Afficher la zone actuelle
+            println("=== Vous êtes dans : ${zoneActuelle.nom} ===")
+            println("Zone d'expérience : ${zoneActuelle.expZone}")
+            println("Monstres possibles : ${zoneActuelle.especesMonstres.joinToString { it.nom }}")
+
+            // Afficher les actions possibles
+            println("\nActions possibles :")
+            println("1 - Rencontrer un monstre sauvage")
+            println("2 - Examiner l'équipe de monstres")
+            if (zoneActuelle.zoneSuivante != null) {
+                println("3 - Aller à la zone suivante")
+            }
+            if (zoneActuelle.zonePrecedante != null) {
+                println("4 - Aller à la zone précédente")
+            }
+            println("0 - Quitter le jeu")
+
+            // Lire le choix du joueur
+            print("Votre choix : ")
+            val choix = readLine()?.toIntOrNull()
+
+            when (choix) {
+                1 -> {
+                    println("\n=== Rencontre d'un monstre sauvage ===")
+                    // Appeler la méthode rencontreMonstre() de la zone
+                    // Note: Vous devrez implémenter cette méthode dans Zone
+                    zoneActuelle.rencontreMonstre()
+                }
+                2 -> {
+                    println("\n=== Examen de l'équipe ===")
+                    examineEquipe()
+                }
+                3 -> {
+                    if (zoneActuelle.zoneSuivante != null) {
+                        println("\nDéplacement vers la zone suivante...")
+                        zoneActuelle = zoneActuelle.zoneSuivante!!
+                        println("Vous arrivez dans : ${zoneActuelle.nom}")
+                    } else {
+                        println("\nErreur : Aucune zone suivante disponible !")
+                    }
+                }
+                4 -> {
+                    if (zoneActuelle.zonePrecedante != null) {
+                        println("\nDéplacement vers la zone précédente...")
+                        zoneActuelle = zoneActuelle.zonePrecedante!!
+                        println("Vous arrivez dans : ${zoneActuelle.nom}")
+                    } else {
+                        println("\nErreur : Aucune zone précédente disponible !")
+                    }
+                }
+                0 -> {
+                    println("\nAu revoir !")
+                    continuer = false
+                }
+                else -> {
+                    println("\nChoix invalide ! Veuillez choisir une option valide.")
+                }
+            }
+
+            println() // Ligne vide pour la lisibilité
+        }
+    private fun examineEquipe() {
+        // Implémentation de l'examen de l'équipe
+        println("Examen de l'équipe en cours...")
+        // Exemple : afficher les monstres de l'équipe du joueur
+    }
+    }
+
 }
