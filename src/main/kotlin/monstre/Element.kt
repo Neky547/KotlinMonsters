@@ -4,11 +4,11 @@ class Element(
     var id: Int,
     var nom: String,
     //une liste mutable d’éléments
-    val forces: MutableSet<Element> = mutableSetOf(),
+    var forces: MutableSet<Element> = mutableSetOf(),
     //une liste mutable de faiblesses
-    val faiblesses: MutableSet<Element> = mutableSetOf(),
+    var faiblesses: MutableSet<Element> = mutableSetOf(),
     //une liste mutable des éléments qui sont immunisés.
-    val immunises: MutableSet<Element> = mutableSetOf()
+    var immunises: MutableSet<Element> = mutableSetOf()
 
 ) {
     /**

@@ -60,6 +60,16 @@ val monstre3 = IndividuMonstre(3, "aquamy", Aquamy, null, 1500.0)
 //Objet MonsterKube
 val kube1 = MonsterKube(1, "springleaf", "Je ne saurais pas comment décrire cet objet", 0.5)
 
+//Objets Eléments
+var feu = Element(1, "Feu", mutableSetOf<Element>(), mutableSetOf<Element>(), mutableSetOf<Element>() )
+var plante = Element(2, "Plante",mutableSetOf<Element>(), mutableSetOf<Element>(), mutableSetOf<Element>())
+var eau = Element(3, "Eau", mutableSetOf<Element>(), mutableSetOf<Element>(), mutableSetOf<Element>())
+var insecte = Element(4, "Insecte", mutableSetOf<Element>(), mutableSetOf<Element>(), mutableSetOf<Element>())
+var roche = Element(5, "Roche", mutableSetOf<Element>(), mutableSetOf<Element>(), mutableSetOf<Element>())
+var normal = Element(6, "Normal", mutableSetOf<Element>(), mutableSetOf<Element>(), mutableSetOf<Element>())
+
+
+
 /**
  * Fonction nouvelle partie
  * Affiche un message d’introduction.
@@ -82,4 +92,27 @@ fun main() {
     val partie = nouvellePartie()
     partie.choixStarter()
     partie.jouer()
+
+    //Modification des objets Element
+    valoriseElement()
+}
+
+/**
+ * Fonction permettant de rajouter des éléments
+ * dans les forces et faiblesses des objets*/
+fun valoriseElement(){
+    feu.forces = mutableSetOf<Element>(plante, insecte)
+    feu.faiblesses = mutableSetOf<Element>(feu, eau, roche)
+
+    plante.forces = mutableSetOf<Element>(eau, roche)
+    plante.faiblesses = mutableSetOf<Element>(feu, plante, roche)
+
+    eau.forces = mutableSetOf<Element>(feu, roche)
+    eau.faiblesses = mutableSetOf<Element>(eau, plante)
+
+    insecte.forces = mutableSetOf<Element>(plante)
+
+    roche.forces = mutableSetOf<Element>(feu, insecte)
+
+    normal.faiblesses = mutableSetOf<Element>(roche)
 }
