@@ -3,6 +3,7 @@ package org.example
 import org.example.dresseur.Entraineur
 import org.example.item.Badge
 import org.example.item.MonsterKube
+import org.example.jeu.Partie
 import org.example.monde.Zone
 import org.example.monstre.EspeceMonstre
 import org.example.monstre.IndividuMonstre
@@ -36,12 +37,12 @@ var joueur = Entraineur(1, "Sacha", 100)
 var rival = Entraineur(2, "Regis", 200)
 
 //ESPECES DE MONSTRES
-var Springleaf = EspeceMonstre(1, "Springleaf", "Graine", 9, 11, 10, 12, 14, 60, 6.5, 9.0, 8.0, 7.0, 10.0, 34.0, "Petit monstre espiègle rond comme une graine, adore le soleil", "Sa feuille sur la tête indique son humeur", "Curieux, amical, timide")
-var Flamkip = EspeceMonstre(4, "Flamkip", "Animal", 12, 8, 13, 16, 7, 50, 10.0, 5.5, 9.5, 9.5, 6.5, 22.0, "Petit animal entouré de flammes, déteste le froid.", "Sa flamme change d’intensité selon son énergie.", "Impulsif, joueur, loyal")
-var Aquamy = EspeceMonstre(7, "Aquamy", "Meteo", 10, 11, 9, 14, 14, 55, 9.0, 10.0, 7.5, 12.0, 12.0, 27.0, "Créature vaporeuse semblable à un nuage, produit des gouttes pures.", "Fait baisser la température en s’endormant.", "Calme, rêveur, mystérieux")
-var Laoumi = EspeceMonstre(8, "Laoumi", "Animal", 11, 10, 9, 8, 11, 58, 11.0, 8.0, 7.0, 6.0, 11.5, 23.0, "Petit ourson au pelage soyeux, aime se tenir debout.", "Son grognement est mignon mais il protège ses amis.", "Affectueux, protecteur, gourmand")
-var Bugsyface = EspeceMonstre(10, "Bugsyface", "Insecte", 10, 13, 8, 7, 13, 45, 7.0, 11.0, 6.5, 8.0, 11.5, 21.0, "Insecte à carapace luisante, se déplace par bonds et vibre des antennes.", "Sa carapace devient plus dure après chaque mue.", "Travailleur, sociable, infatigable")
-var Galum = EspeceMonstre(13, "Flamkip", "Minéral", 12, 15, 6, 8, 12, 55, 9.0, 13.0, 4.0, 6.5, 10.5, 13.0, "Golem ancien de pierre, yeux lumineux en garde.", "Peut rester immobile des heures comme une statue.", "Sérieux, stoïque, fiable")
+val Springleaf = EspeceMonstre(1, "Springleaf", "Graine", 9, 11, 10, 12, 14, 60, 6.5, 9.0, 8.0, 7.0, 10.0, 34.0, "Petit monstre espiègle rond comme une graine, adore le soleil", "Sa feuille sur la tête indique son humeur", "Curieux, amical, timide")
+val Flamkip = EspeceMonstre(4, "Flamkip", "Animal", 12, 8, 13, 16, 7, 50, 10.0, 5.5, 9.5, 9.5, 6.5, 22.0, "Petit animal entouré de flammes, déteste le froid.", "Sa flamme change d’intensité selon son énergie.", "Impulsif, joueur, loyal")
+val Aquamy = EspeceMonstre(7, "Aquamy", "Meteo", 10, 11, 9, 14, 14, 55, 9.0, 10.0, 7.5, 12.0, 12.0, 27.0, "Créature vaporeuse semblable à un nuage, produit des gouttes pures.", "Fait baisser la température en s’endormant.", "Calme, rêveur, mystérieux")
+val Laoumi = EspeceMonstre(8, "Laoumi", "Animal", 11, 10, 9, 8, 11, 58, 11.0, 8.0, 7.0, 6.0, 11.5, 23.0, "Petit ourson au pelage soyeux, aime se tenir debout.", "Son grognement est mignon mais il protège ses amis.", "Affectueux, protecteur, gourmand")
+val Bugsyface = EspeceMonstre(10, "Bugsyface", "Insecte", 10, 13, 8, 7, 13, 45, 7.0, 11.0, 6.5, 8.0, 11.5, 21.0, "Insecte à carapace luisante, se déplace par bonds et vibre des antennes.", "Sa carapace devient plus dure après chaque mue.", "Travailleur, sociable, infatigable")
+val Galum = EspeceMonstre(13, "Flamkip", "Minéral", 12, 15, 6, 8, 12, 55, 9.0, 13.0, 4.0, 6.5, 10.5, 13.0, "Golem ancien de pierre, yeux lumineux en garde.", "Peut rester immobile des heures comme une statue.", "Sérieux, stoïque, fiable")
 
 //ZONES
 var route1 = Zone(1, "Départ", 1500, mutableListOf(Springleaf, Flamkip, Aquamy), null, null)
@@ -56,7 +57,7 @@ val monstre3 = IndividuMonstre(3, "aquamy", Aquamy, null, 1500.0)
 //val badgePierre = Badge(1, "Badge Roche", "Badge gagné lorsque le joueur atteint la arène de pierre.")
 
 //Objet MonsterKube
-val monsterKube1 = MonsterKube(1, "springleaf", "Je ne saurais pas comment décrire cet objet", 0.5)
+val kube1 = MonsterKube(1, "springleaf", "Je ne saurais pas comment décrire cet objet", 0.5)
 
 /**
  * Fonction nouvelle partie
@@ -65,43 +66,18 @@ val monsterKube1 = MonsterKube(1, "springleaf", "Je ne saurais pas comment décr
  * Créer et retourne un nouvelle objet partie
  * */
 fun nouvellePartie(){
-
+    println("Bonjour bienvenu sur Pokemon ^^")
+    println("Entrez votre nom : ")
+    joueur.nom = readln()
+    val nouvellePartie: Partie = Partie(id = 1, joueur = joueur, zone = route1)
 }
 
 fun main() {
     route1.zoneSuivante = route2
     route2.zonePrecedante = route1
+    joueur.sacAItems.add(kube1)
 
-    /*
-    joueur.afficheDetail()
-    rival.afficheDetail()
-    joueur.argents+=50
-    joueur.afficheDetail()
-*/
-
-
-    println(Springleaf.afficheArt())
-    println(monstre1.afficheDetail())
-
-    println(Flamkip.afficheArt())
-    println(monstre2.afficheDetail())
-
-    println(Aquamy.afficheArt())
-    println(Laoumi.afficheArt())
-    println(Bugsyface.afficheArt())
-    println(Galum.afficheArt())
-/*
-    monstre1.exp = 3000.0
-    monstre2.pv += 3500
-*/
-    //Attaquer un monstre
-    println(monstre1.attaquer(monstre3))
-
-    //Exemple objet badge
-    //println(badgePierre)
-
-    //Utiliser kube
-    monsterKube1.utiliser(monstre3)
-
-
+    val partie = nouvellePartie()
+    partie.choixStarter()
+    partie.jouer()
 }

@@ -63,23 +63,27 @@ class Partie (
     /**
      * Affiche les détails des monstres
      * Demande si l'utilisateur veut modifier l'ordre*/
-    fun examinerEquipe(){
+    fun examineEquipe(){
         for(monstre in joueur!!.equipeMonstre){
             println("Pokemon : $monstre\n" +
                     "Numéro : ${joueur!!.equipeMonstre.indexOf(monstre)}")
         }
-        println("Si vous voulez retourner au menu principal : tapez q" +
-                "Si vous voulez modifier l'ordre des monstres : tapez m"+
+        println("Si vous voulez retourner au menu principal : tapez q\n" +
+                "Si vous voulez modifier l'ordre des monstres : tapez m\n"+
                 "Tapez le numéro du monstre pour voir les détails :")
         var entree = readln()
         if(entree.lowercase() == "q") {return}
         else if(entree.lowercase() == "m") {modifierOrdreEquipe()}
-        else if(0 < entree.toInt() < joueur!!.equipeMonstre.size)
-        var monstre = joueur!!.equipeMonstre[entree.toInt()]
-        monstre.espece.afficheArt()
-        monstre.afficheDetail()
-
+        else if(0 < entree.toInt() && entree.toInt()< joueur!!.equipeMonstre.size){
+            var monstre = joueur!!.equipeMonstre[entree.toInt()]
+            monstre.espece.afficheArt()
+            monstre.afficheDetail()
+        } else {
+            println("Entrée invalide")
+            examineEquipe()
+        }
     }
+
 
 /**
  * Méthode Jouer qui permet d'indiquer au joueur la zone où il se trouve
@@ -90,20 +94,14 @@ class Partie (
 
         while (continuer) {
             // Afficher la zone actuelle
-            println("=== Vous êtes dans : ${zoneActuelle.nom} ===")
-            println("Zone d'expérience : ${zoneActuelle.expZone}")
-            println("Monstres possibles : ${zoneActuelle.especesMonstres.joinToString { it.nom }}")
+            println("=== Vous êtes dans : ${zone.nom} ===")
+            println("Zone d'expérience : ${zone.expZone}")
+            println("Monstres possibles : ${zone.especesMonstres.joinToString { it.nom }}")
 
             // Afficher les actions possibles
             println("\nActions possibles :")
             println("1 - Rencontrer un monstre sauvage")
             println("2 - Examiner l'équipe de monstres")
-            if (zoneActuelle.zoneSuivante != null) {
-                println("3 - Aller à la zone suivante")
-            }
-            if (zoneActuelle.zonePrecedante != null) {
-                println("4 - Aller à la zone précédente")
-            }
             println("0 - Quitter le jeu")
 
             // Lire le choix du joueur
@@ -115,26 +113,26 @@ class Partie (
                     println("\n=== Rencontre d'un monstre sauvage ===")
                     // Appeler la méthode rencontreMonstre() de la zone
                     // Note: Vous devrez implémenter cette méthode dans Zone
-                    zoneActuelle.rencontreMonstre()
+                    zone.rencontreMonstre()
                 }
                 2 -> {
                     println("\n=== Examen de l'équipe ===")
                     examineEquipe()
                 }
                 3 -> {
-                    if (zoneActuelle.zoneSuivante != null) {
+                    if (zone.zoneSuivante != null) {
                         println("\nDéplacement vers la zone suivante...")
-                        zoneActuelle = zoneActuelle.zoneSuivante!!
-                        println("Vous arrivez dans : ${zoneActuelle.nom}")
+                        zone = zone.zoneSuivante!!
+                        println("Vous arrivez dans : ${zone.nom}")
                     } else {
                         println("\nErreur : Aucune zone suivante disponible !")
                     }
                 }
                 4 -> {
-                    if (zoneActuelle.zonePrecedante != null) {
+                    if (zone.zonePrecedante != null) {
                         println("\nDéplacement vers la zone précédente...")
-                        zoneActuelle = zoneActuelle.zonePrecedante!!
-                        println("Vous arrivez dans : ${zoneActuelle.nom}")
+                        zone = zone.zonePrecedante!!
+                        println("Vous arrivez dans : ${zone.nom}")
                     } else {
                         println("\nErreur : Aucune zone précédente disponible !")
                     }
@@ -150,11 +148,6 @@ class Partie (
 
             println() // Ligne vide pour la lisibilité
         }
-    private fun examineEquipe() {
-        // Implémentation de l'examen de l'équipe
-        println("Examen de l'équipe en cours...")
-        // Exemple : afficher les monstres de l'équipe du joueur
+    examineEquipe()
     }
-    }
-
 }
