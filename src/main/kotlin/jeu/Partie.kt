@@ -72,7 +72,7 @@ class Partie (
                 "Si vous voulez modifier l'ordre des monstres : tapez m\n"+
                 "Tapez le numéro du monstre pour voir les détails :")
         var entree = readln()
-        if(entree.lowercase() == "q") {return}
+        if(entree.lowercase() == "q") jouer()
         else if(entree.lowercase() == "m") {modifierOrdreEquipe()}
         else if(0 < entree.toInt() && entree.toInt()< joueur!!.equipeMonstre.size){
             var monstre = joueur!!.equipeMonstre[entree.toInt()]

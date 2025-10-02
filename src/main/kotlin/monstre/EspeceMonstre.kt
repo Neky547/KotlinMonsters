@@ -22,6 +22,7 @@ class EspeceMonstre (
     val description: String = "",
     val particularites: String = "",
     val caractères: String = "",
+    val elements: MutableList<Element> = mutableListOf<Element>()
 ) {
 
     /**
