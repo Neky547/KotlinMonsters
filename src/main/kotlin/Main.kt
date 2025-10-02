@@ -70,7 +70,7 @@ fun nouvellePartie(): Partie{
     println("Entrez votre nom : ")
     joueur.nom = readln()
     val nouvellePartie: Partie = Partie(id = 1, joueur = joueur, zone = route1)
-return nouvellePartie
+    return nouvellePartie
 }
 
 fun main() {
@@ -82,5 +82,3 @@ fun main() {
     partie.choixStarter()
     partie.jouer()
 }
-
-
