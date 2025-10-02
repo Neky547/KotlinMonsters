@@ -65,11 +65,12 @@ val kube1 = MonsterKube(1, "springleaf", "Je ne saurais pas comment décrire cet
  * Demande et modifie le nom du joueur.
  * Créer et retourne un nouvelle objet partie
  * */
-fun nouvellePartie(){
+fun nouvellePartie(): Partie{
     println("Bonjour bienvenu sur Pokemon ^^")
     println("Entrez votre nom : ")
     joueur.nom = readln()
     val nouvellePartie: Partie = Partie(id = 1, joueur = joueur, zone = route1)
+return nouvellePartie
 }
 
 fun main() {
@@ -81,3 +82,5 @@ fun main() {
     partie.choixStarter()
     partie.jouer()
 }
+
+
